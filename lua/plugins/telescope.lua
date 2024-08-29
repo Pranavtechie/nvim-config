@@ -1,4 +1,5 @@
 return {
+	{
     'nvim-telescope/telescope.nvim', 
     tag = '0.1.8',  -- Use a specific tag (or branch if preferred)
     dependencies = { 'nvim-lua/plenary.nvim' },  -- List dependencies
@@ -12,5 +13,19 @@ return {
         vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
     end
+	}, 
+	{
+		"nvim-telescope/telescope-ui-select.nvim",
+		config = function()
+			require("telescope").setup({
+			  extensions = {
+			    ["ui-select"] = {
+			      require("telescope.themes").get_dropdown {}
+			    }
+			  }
+			})
+			require("telescope").load_extension("ui-select")
+		end
+	},
 }
 
